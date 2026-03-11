@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kyle's Nifty Little Links</title>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --pink: #d200a5;
+      --cobalt: #2800ea;
+      --pale-cobalt: #bbc6ff;
+      --pale-pink: #ebbcff;
+      --light-blue: #d7eeff;
+      --black: #201a46;
+      --dark-blue: #0d0980;
+      --yellow: #ffac33;
+      --pale-yellow: #ffd261;
+    }
+
+    body {
+      font-family: 'Raleway', sans-serif;
+      background-color: var(--light-blue);
+      color: var(--black);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Blob decorations */
+    .blob {
+      position: fixed;
+      border-radius: 60% 40% 70% 30% / 50% 60% 40% 70%;
+      opacity: 0.35;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .blob-1 {
+      width: 420px; height: 420px;
+      background: var(--pale-cobalt);
+      top: -120px; left: -100px;
+      animation: blobFloat 8s ease-in-out infinite;
+    }
+    .blob-2 {
+      width: 300px; height: 300px;
+      background: var(--pale-pink);
+      bottom: -80px; right: -60px;
+      animation: blobFloat 10s ease-in-out infinite reverse;
+    }
+    .blob-3 {
+      width: 200px; height: 200px;
+      background: var(--pale-yellow);
+      top: 50%; right: 8%;
+      animation: blobFloat 12s ease-in-out infinite 2s;
+    }
+    @keyframes blobFloat {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(12px, -18px) scale(1.03); }
+      66% { transform: translate(-8px, 10px) scale(0.97); }
+    }
+
+    /* Main layout */
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 60px 24px 80px;
+    }
+
+    /* Header */
+    header {
+      text-align: center;
+      margin-bottom: 56px;
+      animation: fadeDown 0.6s ease both;
+    }
+
+    .logo-area {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+
+    .logo-icon {
+      width: 44px;
+      height: 44px;
+    }
+
+    .logo-text {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+    .logo-text .peer { color: var(--dark-blue); }
+    .logo-text .scroller {
+      background: linear-gradient(90deg, var(--pink), var(--cobalt));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 6vw, 3rem);
+      font-weight: 700;
+      color: var(--black);
+      line-height: 1.15;
+      margin-bottom: 12px;
+    }
+
+    h1 span {
+      background: linear-gradient(90deg, var(--pink), var(--cobalt));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .subtitle {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--dark-blue);
+      opacity: 0.7;
+    }
+
+    /* Cards */
+    .links-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .link-card {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      background: white;
+      border: 3px solid var(--cobalt);
+      border-radius: 20px;
+      padding: 22px 26px;
+      text-decoration: none;
+      color: var(--black);
+      box-shadow: 5px 5px 0px var(--cobalt);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      animation: fadeUp 0.5s ease both;
+    }
+
+    .link-card:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 8px 8px 0px var(--cobalt);
+    }
+
+    .link-card:active {
+      transform: translate(2px, 2px);
+      box-shadow: 3px 3px 0px var(--cobalt);
+    }
+
+    .link-card:nth-child(1) { animation-delay: 0.1s; }
+    .link-card:nth-child(2) { animation-delay: 0.2s; }
+    .link-card:nth-child(3) { animation-delay: 0.3s; }
+    .link-card:nth-child(4) { animation-delay: 0.4s; }
+    .link-card:nth-child(5) { animation-delay: 0.5s; }
+
+    .link-card.pink-border {
+      border-color: var(--pink);
+      box-shadow: 5px 5px 0px var(--pink);
+    }
+    .link-card.pink-border:hover {
+      box-shadow: 8px 8px 0px var(--pink);
+    }
+    .link-card.pink-border:active {
+      box-shadow: 3px 3px 0px var(--pink);
+    }
+
+    .card-emoji {
+      font-size: 2rem;
+      flex-shrink: 0;
+      width: 52px;
+      height: 52px;
+      background: var(--light-blue);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .link-card.pink-border .card-emoji {
+      background: #fff0fc;
+    }
+
+    .card-text { flex: 1; }
+
+    .card-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--black);
+      margin-bottom: 3px;
+    }
+
+    .card-desc {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--dark-blue);
+      opacity: 0.6;
+    }
+
+    .card-arrow {
+      font-size: 1.2rem;
+      color: var(--cobalt);
+      flex-shrink: 0;
+      font-weight: 700;
+    }
+    .link-card.pink-border .card-arrow {
+      color: var(--pink);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      margin-top: 56px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--dark-blue);
+      opacity: 0.5;
+      animation: fadeUp 0.5s ease 0.6s both;
+    }
+
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+
+  <div class="container">
+    <header>
+      <div class="logo-area">
+        <!-- Peerscroller bird icon (SVG approximation) -->
+        <svg class="logo-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="100" height="100" rx="22" fill="white"/>
+          <path d="M72 28 L48 44 L58 50 L30 72 L54 56 L44 50 Z" fill="url(#birdGrad)"/>
+          <defs>
+            <linearGradient id="birdGrad" x1="30" y1="72" x2="72" y2="28" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#d200a5"/>
+              <stop offset="100%" stop-color="#2800ea"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <span class="logo-text">
+          <span class="peer">Peer</span><span class="scroller">scroller</span>
+        </span>
+      </div>
+
+      <h1>Kyle's <span>Nifty Little</span> Links</h1>
+      <p class="subtitle">Everything in one place ✨</p>
+    </header>
+
+    <nav class="links-list">
+
+      <a href="checklist.html" class="link-card pink-border">
+        <div class="card-emoji">✅</div>
+        <div class="card-text">
+          <div class="card-title">Checklist</div>
+          <div class="card-desc">Your handy checklist page</div>
+        </div>
+        <div class="card-arrow">→</div>
+      </a>
+
+      <!-- Add more links below — just duplicate a .link-card block! -->
+      <!-- 
+      <a href="your-page.html" class="link-card">
+        <div class="card-emoji">📄</div>
+        <div class="card-text">
+          <div class="card-title">Page Name</div>
+          <div class="card-desc">A short description</div>
+        </div>
+        <div class="card-arrow">→</div>
+      </a>
+      -->
+
+    </nav>
+
+    <footer>
+      by <strong>Yipiyap</strong>
+    </footer>
+  </div>
+
+</body>
+</html>
