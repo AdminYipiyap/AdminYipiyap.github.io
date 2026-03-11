@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Peerscroller Conference Checklist</title>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Raleway', sans-serif;
+    background: #d7eeff;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+  }
+
+  .card {
+    background: white;
+    border-radius: 28px;
+    border: 4px solid #2800ea;
+    padding: 40px 36px;
+    max-width: 520px;
+    width: 100%;
+    box-shadow: 8px 8px 0px #2800ea;
+  }
+
+  .header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 8px;
+  }
+
+  .logo-icon {
+    width: 52px;
+    height: 52px;
+    flex-shrink: 0;
+  }
+
+  .brand-name {
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .brand-peer { color: #201a46; }
+  .brand-scroller { color: #d200a5; }
+
+  .by-line {
+    font-size: 11px;
+    font-weight: 600;
+    color: #201a46;
+    letter-spacing: 0.05em;
+    margin-top: 3px;
+  }
+
+  .by-line span {
+    color: #2800ea;
+    font-weight: 700;
+  }
+
+  .divider {
+    height: 4px;
+    background: linear-gradient(90deg, #d200a5, #2800ea);
+    border-radius: 4px;
+    margin: 20px 0;
+  }
+
+  h1 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #201a46;
+    margin-bottom: 22px;
+  }
+
+  .checklist {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .checklist li {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 16px;
+    border-radius: 16px;
+    border: 3px solid #bbc6ff;
+    background: white;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    user-select: none;
+  }
+
+  .checklist li:hover {
+    border-color: #2800ea;
+    background: #f0f4ff;
+  }
+
+  .checklist li.checked {
+    background: #ebbcff22;
+    border-color: #d200a5;
+  }
+
+  .checklist li.checked .label {
+    color: #bbc6ff;
+    text-decoration: line-through;
+  }
+
+  .checkbox {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    border: 3px solid #bbc6ff;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    background: white;
+  }
+
+  .checklist li.checked .checkbox {
+    background: linear-gradient(135deg, #d200a5, #2800ea);
+    border-color: transparent;
+  }
+
+  .tick {
+    display: none;
+    width: 14px;
+    height: 10px;
+  }
+
+  .checklist li.checked .tick { display: block; }
+
+  .label {
+    font-family: 'Raleway', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: #201a46;
+    flex: 1;
+    transition: color 0.2s ease;
+  }
+
+  .qty {
+    font-family: 'Raleway', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: white;
+    background: linear-gradient(135deg, #d200a5, #2800ea);
+    padding: 3px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+
+  .checklist li.checked .qty {
+    background: #bbc6ff;
+  }
+
+  .progress-bar-wrap {
+    margin-top: 24px;
+    background: #d7eeff;
+    border-radius: 20px;
+    height: 10px;
+    overflow: hidden;
+  }
+
+  .progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #d200a5, #2800ea);
+    border-radius: 20px;
+    transition: width 0.4s ease;
+    width: 0%;
+  }
+
+  .progress-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #201a46;
+    margin-top: 8px;
+    text-align: right;
+  }
+
+  .progress-label span { color: #d200a5; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="header">
+    <!-- Peerscroller-style SVG icon -->
+    <svg class="logo-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <rect x="10" y="5" width="80" height="75" rx="20" ry="20" fill="white" stroke="url(#grad)" stroke-width="5"/>
+      <defs>
+        <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#2800ea"/>
+          <stop offset="100%" style="stop-color:#d200a5"/>
+        </linearGradient>
+      </defs>
+      <!-- speech bubble tail -->
+      <polygon points="30,78 50,95 50,78" fill="url(#grad)"/>
+      <!-- origami bird -->
+      <polygon points="30,42 55,30 50,48" fill="#d200a5"/>
+      <polygon points="50,48 55,30 72,40" fill="#9900cc"/>
+      <polygon points="55,30 72,40 65,25" fill="#d200a5"/>
+      <polygon points="30,42 50,48 35,55" fill="#b000bb"/>
+    </svg>
+    <div>
+      <div class="brand-name">
+        <span class="brand-peer">Peer</span><span class="brand-scroller">scroller</span>
+      </div>
+      <div class="by-line">BY <span>yipiyap</span></div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <h1>Conference Checklist</h1>
+
+  <ul class="checklist" id="checklist">
+    <li onclick="toggle(this)">
+      <div class="checkbox"><svg class="tick" viewBox="0 0 14 10" fill="none"><polyline points="1,5 5,9 13,1" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <span class="label">iPads</span>
+      <span class="qty">x2</span>
+    </li>
+    <li onclick="toggle(this)">
+      <div class="checkbox"><svg class="tick" viewBox="0 0 14 10" fill="none"><polyline points="1,5 5,9 13,1" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <span class="label">iPad stands</span>
+      <span class="qty">x2</span>
+    </li>
+    <li onclick="toggle(this)">
+      <div class="checkbox"><svg class="tick" viewBox="0 0 14 10" fill="none"><polyline points="1,5 5,9 13,1" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <span class="label">iPad locking cables</span>
+      <span class="qty">x2</span>
+    </li>
+    <li onclick="toggle(this)">
+      <div class="checkbox"><svg class="tick" viewBox="0 0 14 10" fill="none"><polyline points="1,5 5,9 13,1" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <span class="label">iPad locking keys</span>
+      <span class="qty">x2</span>
+    </li>
+    <li onclick="toggle(this)">
+      <div class="checkbox"><svg class="tick" viewBox="0 0 14 10" fill="none"><polyline points="1,5 5,9 13,1" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <span class="label">Big screen</span>
+      <span class="qty">x1</span>
+    </li>
+    <li onclick="toggle(this)">
+      <div class="checkbox"><svg class="tick" viewBox="0 0 14 10" fill="none"><polyline points="1,5 5,9 13,1" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <span class="label">Peerscroller tablecloth</span>
+      <span class="qty">x1</span>
+    </li>
+    <li onclick="toggle(this)">
+      <div class="checkbox"><svg class="tick" viewBox="0 0 14 10" fill="none"><polyline points="1,5 5,9 13,1" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <span class="label">Peerscroller backdrop</span>
+      <span class="qty">x1</span>
+    </li>
+    <li onclick="toggle(this)">
+      <div class="checkbox"><svg class="tick" viewBox="0 0 14 10" fill="none"><polyline points="1,5 5,9 13,1" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <span class="label">Peerscroller backdrop frame</span>
+      <span class="qty">x1</span>
+    </li>
+    <li onclick="toggle(this)">
+      <div class="checkbox"><svg class="tick" viewBox="0 0 14 10" fill="none"><polyline points="1,5 5,9 13,1" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <span class="label">Conference QR codes</span>
+      <span class="qty">x2</span>
+    </li>
+  </ul>
+
+  <div class="progress-bar-wrap">
+    <div class="progress-bar" id="progress"></div>
+  </div>
+  <div class="progress-label" id="progress-label"><span>0</span> / 9 packed</div>
+</div>
+
+<script>
+  function toggle(el) {
+    el.classList.toggle('checked');
+    updateProgress();
+  }
+
+  function updateProgress() {
+    const items = document.querySelectorAll('.checklist li');
+    const checked = document.querySelectorAll('.checklist li.checked').length;
+    const pct = (checked / items.length) * 100;
+    document.getElementById('progress').style.width = pct + '%';
+    document.getElementById('progress-label').innerHTML = `<span>${checked}</span> / ${items.length} packed`;
+  }
+</script>
+</body>
+</html>
